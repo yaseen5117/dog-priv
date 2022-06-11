@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Profile')
 @section('content')
 <style>
   .card-img-top {

@@ -1939,3 +1939,6 @@ section {
   background-color: #94c045;
   color: white;
 }
+.select2-container .select2-selection--single {
+  height: 38px !important;
+}

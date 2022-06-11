@@ -31,3 +31,4 @@ Route::post('rate_user', 'App\Http\Controllers\UsersController@rateUser');
 Route::post('report_user', 'App\Http\Controllers\UsersController@reportingUser');
 Route::post('favourite_posts', 'App\Http\Controllers\PostController@favouritePost');
 Route::post('favourites', 'App\Http\Controllers\DashBoardController@favourite');
+Route::resource('dashboard', 'App\Http\Controllers\UsersController');

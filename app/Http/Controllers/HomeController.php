@@ -45,9 +45,9 @@ class HomeController extends Controller
         $query = "SELECT *, COUNT(favourite_posts.post_id) as postLikeCount from posts INNER JOIN favourite_posts ON posts.id = favourite_posts.post_id JOIN users ON users.id = posts.user_id GROUP BY favourite_posts.post_id ORDER BY COUNT(DISTINCT favourite_posts.post_id) LIMIT 6";
         $popular_posts = DB::select($query);
         //dd($popular_posts);
-        $regions = Region::all();
-        $provinces = Province::all();
-        $cities = City::all();
+        $regions = Region::orderBy('title')->get();
+        $provinces = Province::orderBy('title')->get();
+        $cities = City::orderBy('title')->get();
         //dd($popular_users);
         return view('home', compact('users','popular_users','regions','provinces','cities','popular_posts'));
     }

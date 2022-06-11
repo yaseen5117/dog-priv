@@ -33,7 +33,7 @@
                         </div>
 
 
-                        <div class="ffl-wrapper">                             
+                        <div class="ffl-wrapper">
                             <input required type="text" id="surname" placeholder="SURNAME" name="surname" class="form-control" class="form-control" />
                         </div>
 
@@ -112,18 +112,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="ffl-wrapper">
-                                 
-                                    <input type="text" id="age_month"  placeholder="MONTH" name="age_month" class="form-control" />
+
+                                    <input type="text" id="age_month" placeholder="MONTH" name="age_month" class="form-control" />
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="ffl-wrapper">                                     
+                                <div class="ffl-wrapper">
                                     <input type="text" id="age_year" placeholder="YEARS" name="age_year" class="form-control" />
                                 </div>
                             </div>
-                        </div>                    
-                          
+                        </div>
+
                         <div class="ffl-wrapper" style="margin-top: 20px">
                             <select id="race_type_id" name="race_type_id" style="width: 100%" required class="race_type_dropdown form-control" value="">
                                 <option value="">-- SELECT RACE --</option>
@@ -166,7 +166,9 @@
                             <textarea type="text" rows="4" cols="50" placeholder="PARTICULAR DETAIL" name="particular_detail" class="form-control"></textarea>
                         </div>
 
-                    </div> <button type="button" name="previous" class="previous action-button-previous btn-sm">Previous</button> <button type="button" name="next" class="next action-button btn-sm">Next Step</button>
+                    </div>
+                    <!-- <button type="button" name="previous" class="previous action-button-previous btn-sm">Previous</button>  -->
+                    <button type="button" name="next" class="next action-button btn-sm">Next Step</button>
                 </fieldset>
 
 
@@ -181,6 +183,8 @@
 
                         <div class="ffl-wrapper">
                             <input type="password" placeholder="PASSWORD" id="password" name="password" class="form-control" />
+                            
+                            <input style="margin-top: 2px;" type="checkbox" onclick="myFunction()">Show Password
                         </div>
 
                         <div class="ffl-wrapper mt-1">
@@ -211,7 +215,10 @@
                             <textarea type="text" rows="4" cols="50" placeholder="I WANT TO FIND A DOG THAT IS" name="dog_detail" id="dog_detail" class="form-control"></textarea>
                         </div>
 
-                    </div> <button type="button" name="previous" class="previous action-button-previous btn-sm">Previous</button> <button type="submit" name="next" class="btn next action-button btn-sm">Next Step</button>
+                    </div>
+                    <!-- <button type="button" name="previous" class="previous action-button-previous btn-sm">Previous</button>  -->
+                    <input type="checkbox" name="privacy_policy" id="privacy_policy" /> <span><a href="#" target="_blank">Accept Privacy Policy</a></span>
+                    <button type="submit" name="next" class="btn next action-button btn-sm">Next Step</button>
                 </fieldset>
 
 
@@ -248,8 +255,16 @@
                     </div>
                 @endif -->
 <script>
+    function myFunction() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
     $(function() {
-    
+
         $('#region_id').on('change', function(e) {
 
             var regionId = $('#region_id').val()

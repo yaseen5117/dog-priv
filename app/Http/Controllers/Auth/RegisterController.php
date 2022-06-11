@@ -50,8 +50,8 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         //$roles = Role::all();
-        $regions = Region::all();
-        $race_types = DogType::all();
+        $regions = Region::orderBy('title')->get();
+        $race_types = DogType::orderBy('title')->get();
         $cities = [];
         $provinces = [];
         return view("auth.register",compact("regions","cities","provinces","race_types"));//, compact("roles")
@@ -85,8 +85,11 @@ class RegisterController extends Controller
     {
 
         $fileName = null;
-        if($data['profile_image_file']){
+        if(!empty($data['profile_image_file'])){
             $fileName = md5(microtime()) . '.' . $data['profile_image_file']->getClientOriginalExtension();
+        }
+        if(empty($data['pedigree'])){
+            $data['pedigree'] = null;
         }
         
         $record = User::create([
@@ -118,9 +121,9 @@ class RegisterController extends Controller
         ]);
 
         //$record->assignRole($data['role']);
-
-        $data['profile_image_file']->storeAs('users/' . $record->id . '/', $fileName);
-        
+        if($fileName){
+            $data['profile_image_file']->storeAs('users/' . $record->id . '/', $fileName);
+        }        
         return $record;
     }
     public function register(Request $request)

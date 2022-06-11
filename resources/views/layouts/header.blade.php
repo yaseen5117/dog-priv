@@ -10,12 +10,12 @@
 
       <nav id="navbar" class="navbar">
         <ul class="box">
-          <li><a class="active" href="{{ url('/') }}">Home</a></li>
+          <li><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
          
-          <li><a href="{{ url('members') }}">Members</a></li>          
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a class="nav-link {{ request()->is('members') ? 'active' : '' }}" href="{{ url('members') }}">Members</a></li>          
+          <li><a class="nav-link {{ request()->is('#') ? 'active' : '' }}" href="#">FAQ</a></li>
+          <li><a href="nav-link {{ request()->is('#') ? 'active' : '' }}">Blog</a></li>
+          <li><a href="nav-link {{ request()->is('#') ? 'active' : '' }}">Contact Us</a></li>
           @if(Auth::user())
           <li class="dropdown"> 
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

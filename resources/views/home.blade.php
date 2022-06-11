@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Home')
 @section('content')
 
 <!-- ======= Hero Section ======= -->
@@ -10,7 +10,7 @@
     <form action="{{ url('members') }}" type="get" role="search">
       <div class="row g-3 align-items-center">
         <div class="offset-lg-8 offset-md-8 offset-sm-0 col-lg-4 col-md-4 col-sm-12">
-          <input type="text" placeholder="type the race you search" id="surname" name="surname" class="form-control" aria-describedby="surname">
+          <input class="autocomplete form-control" type="text" placeholder="type the race you search" id="surname" name="surname">
         </div>
         <div class="offset-lg-8 offset-md-8 offset-sm-0 col-lg-4 col-md-4 col-sm-12">
           <select id="region_id" name="region_id" style="width: 100%;" class="form-control" value="">

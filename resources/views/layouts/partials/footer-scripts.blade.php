@@ -45,6 +45,7 @@
                  }
                 },
                 password: "required",
+                privacy_policy: "required",
             },
             messages: {
                 email: {

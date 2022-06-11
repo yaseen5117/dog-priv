@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Members')
 @section('content')
 @include('users._partials.css')
 <main id="main">

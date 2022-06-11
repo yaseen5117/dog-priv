@@ -26,15 +26,15 @@
               A108 Adam Street <br>
               New York, NY 535022<br>
               United States <br>
-              <strong>Phone:</strong> +923049906276<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Phone:</strong> +39 380 101 1195<br>
+              <strong>Email:</strong> Info@dogprive.it<br>
             </p>
 
             <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <!-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a> -->
+              <a href="https://www.facebook.com/DogPrive/" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/dogprive/" class="instagram"><i class="bi bi-instagram"></i></a>
+              <!-- <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> -->
             </div>
 
           </div>
