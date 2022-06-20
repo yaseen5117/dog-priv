@@ -7,10 +7,39 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+ 
+
+  <!-- Yiedl Seo Meta Data -->
+  <meta name="description" content="@yield('description')">
+  <meta name="robots" content="@yield('robots', 'index, follow')">
+  <meta name="author" content="Dog Privè">
+
 
   <title>| Dog Prive -@yield('title')</title>
+
+   <!--Schema metadata-->
+  
+   <script type="application/ld+json">
+    @yield('schema')
+    </script>
+  
+ 
+   <!--Facebook metadata-->
+  <meta property="og:title" content="@yield('title')" />
+  <meta property="og:description" content="@yield('description')"/>
+  <meta property="og:image" content="@yield('seo_img')" />
+  <meta property="og:image:secure_url" content="@yield('seo_img')" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="627" />
+  <meta property="og:image:alt" content="@yield('seo_alt')" />
+  <meta property="og:url" content="@yield('seo_url')" />
+  <meta property="og:type" content="@yield('seo_type')">
+  <meta property="fb:app_id" content="440809292732909"/>
+
+  <!--Google analytics-->
+  
+
 
   <!-- Favicons -->
   <link href="{{ asset('dog-prive/assets/img/logo.png') }}" rel="icon">
