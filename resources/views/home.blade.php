@@ -39,7 +39,7 @@
           <select id="city_id" name="city_id" style="width: 100%;" class="city_dropdown form-control" value="">
             <option value="">type city </option>
             @foreach ($cities as $citylist)
-            <option @if($citylist->id == @$developmentApplication->city_id) selected="" @endif value="{{$citylist->id}}">
+            <option value="{{$citylist->id}}">
               {{$citylist->title}}
             </option>
             @endforeach
@@ -47,7 +47,7 @@
         </div>
         <div class="offset-lg-8 offset-md-8 offset-sm-0 col-lg-4 col-md-4 col-sm-12">
           <select class="form-control" id="sex" name="sex">
-            <option>Choose Sex</option>
+            <option value="">Choose Sex</option>
             <option value="1">male</option>
             <option value="0">female</option>
           </select>
@@ -75,7 +75,7 @@
               <div class="count-box py-5">
                 <span class="bi bi-emoji-smile"></span>
                 <p>Number of Users</p>
-                <p class="small"><a href="#!" class="btn btn-light rounded-pill btn-sm">{{@$users->count()}}</a></p>
+                <p class="small"><a href="#!" class="btn btn-light rounded-pill btn-sm">{{totalUsers()}}</a></p>
               </div>
             </div>
 
@@ -128,9 +128,13 @@
 
           <div class="card">
             @if($user->profile_image)
+            <a href="{{ url('user_profile/'.$user->id) }}">
             <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$user->id.'/'.$user->profile_image}}" />
+            </a>
             @else
+            <a href="{{ url('user_profile/'.$user->id) }}">
             <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
+            </a>
             @endif
 
             <div class="card-body">
@@ -206,9 +210,13 @@
             <div class="card">
 
               @if($popular_user->profile_image)
+              <a href="{{ url('user_profile/'.$popular_user->item_id) }}">
               <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$popular_user->item_id.'/'.$popular_user->profile_image}}" />
+              </a>
               @else
+              <a href="{{ url('user_profile/'.$popular_user->item_id) }}">
               <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
+              </a>
               @endif
               <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -277,7 +285,9 @@
             <div class="card mb-3" style="max-width: 540px;">             
               <div class="row g-0">
                 <div class="col-md-4 col-sm-4">
+                  <a href="{{ url('user_profile/'.$popular_post->user_id) }}">
                   <img style="width: 100%; height: 100%;" src="{{asset('').'storage/public/'.$popular_post->post_id.'/'.$popular_post->file_name}}" class="card-img-top" alt="{{$popular_post->title}}" />
+                  </a>
                 </div>
                 <div class="col-md-8 col-sm-8">
                   <div class="card-body">
@@ -288,7 +298,7 @@
                         </svg><span style="color: black;">({{$popular_post->postLikeCount}})</span></span>
                     </div>
                     <p class="card-text">{{substr($popular_post->title, 0, 20)}}..</p>
-                    <p class="card-text"><a class="btn btn-success" href="{{ url('user_profile/'.$popular_post->user_id) }}">View</a></p>
+                    <p class="card-text"><a class="btn view-btn" href="{{ url('user_profile/'.$popular_post->user_id) }}">View</a></p>
                   </div>
                 </div>
               </div>
@@ -361,66 +371,66 @@
     })
   }
 
-  $(function() {
+  // $(function() {
 
-    $('#region_id').on('change', function(e) {
+  //   $('#region_id').on('change', function(e) {
 
-      var regionId = $('#region_id').val()
+  //     var regionId = $('#region_id').val()
 
-      var div = $(this).parent();
+  //     var div = $(this).parent();
 
-      var op = " ";
+  //     var op = " ";
 
-      $.ajax({
-        url: "{{url('provinces')}}",
-        type: 'get',
-        data: {
-          'region_id': regionId
-        },
-        success: function(data) {
-          console.log(data);
-          // var html ='<select id="district_id" name="district_id" class="form-control" value="{{@$developmentApplication->district_id}}">'
-          op += '<option value="0" selected disabled>--SELECT PROVINCE--</option>';
-          for (var i = 0; i < data.length; i++) {
-            op += '<option value="' + data[i].id + '">' + data[i].title + '</option>';
-          }
-          // html += '</select>'
+  //     $.ajax({
+  //       url: "{{url('provinces')}}",
+  //       type: 'get',
+  //       data: {
+  //         'region_id': regionId
+  //       },
+  //       success: function(data) {
+  //         console.log(data);
+  //         // var html ='<select id="district_id" name="district_id" class="form-control" value="{{@$developmentApplication->district_id}}">'
+  //         op += '<option value="0" selected disabled>--SELECT PROVINCE--</option>';
+  //         for (var i = 0; i < data.length; i++) {
+  //           op += '<option value="' + data[i].id + '">' + data[i].title + '</option>';
+  //         }
+  //         // html += '</select>'
 
-          $('.province_dropdown').empty().append(op);
+  //         $('.province_dropdown').empty().append(op);
 
-        }
-      })
+  //       }
+  //     })
 
-    });
+  //   });
 
-    $('#province_id').on('change', function(e) {
+  //   $('#province_id').on('change', function(e) {
 
-      var provinceId = $('#province_id').val()
+  //     var provinceId = $('#province_id').val()
 
-      var div = $(this).parent();
+  //     var div = $(this).parent();
 
-      var op = " ";
+  //     var op = " ";
 
-      $.ajax({
-        url: "{{url('cities')}}",
-        type: 'get',
-        data: {
-          'province_id': provinceId
-        },
-        success: function(data) {
+  //     $.ajax({
+  //       url: "{{url('cities')}}",
+  //       type: 'get',
+  //       data: {
+  //         'province_id': provinceId
+  //       },
+  //       success: function(data) {
 
-          op += '<option value="0" selected disabled>--SELECT CITY--</option>';
-          for (var i = 0; i < data.length; i++) {
-            op += '<option value="' + data[i].id + '">' + data[i].title + '</option>';
-          }
+  //         op += '<option value="0" selected disabled>--SELECT CITY--</option>';
+  //         for (var i = 0; i < data.length; i++) {
+  //           op += '<option value="' + data[i].id + '">' + data[i].title + '</option>';
+  //         }
 
-          $('.city_dropdown').empty().append(op);
+  //         $('.city_dropdown').empty().append(op);
 
-        }
-      })
+  //       }
+  //     })
 
-    });
-  })
+  //   });
+  // })
 </script>
 
 @endsection

@@ -101,7 +101,7 @@
             <div class="col-md-6 offset-md-6">
               <div class="d-flex justify-content-between mb-2">
                 <div class="d-flex justify-content-between align-items-center">
-                  <div class="rate py-3">
+                  <div class="rate py-3">                    
                     @if(@$isRatedBefore) 
                     <label for="5" style="color: #ebb734; font-size: 20px;">☆</label>                   
                    @else                    

@@ -130,9 +130,13 @@
           <div class="col-lg-4 col-md-4 col-sm-6 mt-2">
             <div class="card" data-aos="fade-up" data-aos-delay="300">
             @if($user->profile_image)
+            <a href="{{ url('user_profile/'.$user->id) }}">
             <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$user->id.'/'.$user->profile_image}}" />
+            </a>
             @else
+            <a href="{{ url('user_profile/'.$user->id) }}">
             <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
+            </a>
             @endif
             <div class="card-body">
                 <div class="d-flex justify-content-between">
