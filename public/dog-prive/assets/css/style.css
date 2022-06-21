@@ -14,12 +14,12 @@ body {
 }
 
 a {
-  color: #94c045;
+  color: #06a8ee;
   text-decoration: none;
 }
 
 a:hover {
-  color: #aacd6b;
+  color: #06a8ee;
   text-decoration: none;
 }
 
@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #94c045;
+  background: #06a8ee;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0;
 }
 .back-to-top:hover {
-  background: #a6ca63;
+  background: #2EF02E;
   color: #fff;
 }
 .back-to-top.active {
@@ -135,10 +135,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
-  color: #94c045;
+  color: #ee478d;
 }
 .navbar .getstarted, .navbar .getstarted:focus {
-  background: #94c045;
+  background: #ee478d;
   padding: 5px 20px;
   margin-left: 30px;
   border-radius: 50px;
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar .getstarted:hover, .navbar .getstarted:focus:hover {
   color: #fff;
-  background: #9fc658;
+  background: #ee478d;
 }
 .navbar .dropdown ul {
   display: block;
@@ -174,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #94c045;
+  color: #ee478d;
 }
 .navbar .dropdown:hover > ul {
   opacity: 1;
@@ -262,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #3c4133;
 }
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #94c045;
+  color: #ee478d;
 }
 .navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
   margin: 15px;
@@ -288,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-  color: #94c045;
+  color: #ee478d;
 }
 .navbar-mobile .dropdown > .dropdown-active {
   display: block;
@@ -349,12 +349,20 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px;
-  border: 2px solid #94c045;
+  border: 2px solid #ee478d;
   text-transform: uppercase;
   color: #fff;
 }
 #hero .btn-get-started:hover {
-  background: #94c045;
+  background: #ee478d;
+}
+.view-btn{
+  background-color: #06a8ee;
+  color: white;
+}
+.view-btn:hover{
+  background-color: #2EF02E;
+  color: #ee478d;
 }
 @media (min-width: 1024px) {
   #hero {
@@ -420,7 +428,7 @@ section {
 }
 .breadcrumbs .breadcrumb-hero {
   text-align: center;
-  background: #94c045;
+  background: #06a8ee;
   padding: 20px 0;
   color: #fff;
 }
@@ -464,7 +472,7 @@ section {
 .about .count-box i {
   display: block;
   font-size: 48px;
-  color: #94c045;
+  color: #06a8ee;
   float: left;  
   line-height: 0;
 }
@@ -515,7 +523,7 @@ section {
 }
 .about .content ul i {
   font-size: 24px;
-  color: #94c045;
+  color: #06a8ee;
   position: absolute;
   left: 0;
   top: -2px;
@@ -526,7 +534,7 @@ section {
 .about .play-btn {
   width: 94px;
   height: 94px;
-  background: radial-gradient(#94c045 50%, rgba(148, 192, 69, 0.4) 52%);
+  background: radial-gradient(#06a8ee 50%, rgba(148, 192, 69, 0.4) 52%);
   border-radius: 50%;
   display: block;
   position: absolute;
@@ -642,8 +650,8 @@ section {
   color: #fff;
 }
 .cta .cta-btn:hover {
-  background: #aacd6b;
-  border-color: #aacd6b;
+  background: #ee478d;
+  border-color: #ee478d;
 }
 
 /*--------------------------------------------------------------
@@ -1235,7 +1243,7 @@ section {
   padding: 10px 12px;
 }
 .contact .php-email-form button[type=submit] {
-  background: #94c045;
+  background: #06a8ee;
   border: 0;
   padding: 10px 24px;
   color: #fff;
@@ -1243,7 +1251,8 @@ section {
   border-radius: 50px;
 }
 .contact .php-email-form button[type=submit]:hover {
-  background: #aacd6b;
+  background: #2EF02E;
+  color: #ee478d;
 }
 @-webkit-keyframes animate-loading {
   0% {
@@ -1859,7 +1868,7 @@ section {
   border-radius: 4px 0 0 4px;
 }
 #footer .footer-top .footer-newsletter input[type=submit] {
-  background: #94c045;
+  background: #06a8ee;
   border: 0;
   border-radius: 0 4px 4px 0;
   width: 35%;
@@ -1870,7 +1879,8 @@ section {
   cursor: pointer;
 }
 #footer .footer-top .footer-newsletter input[type=submit]:hover {
-  background: #789d35;
+  background: #2EF02E;
+  color: #ee478d;
 }
 #footer .copyright {
   text-align: center;

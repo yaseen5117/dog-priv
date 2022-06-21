@@ -31,9 +31,9 @@ class UsersController extends Controller
         $user = Auth::user();
         // dd($user->race->id);
         $same_race_users = User::where('race_type_id',$user->race->id)->take(3)->get();
-         
+        $isRatedBefore = true; //user cannot rate himself
         $logged_user_profile = false;
-        return view('users.profile', compact('user','logged_user_profile','same_race_users'));
+        return view('users.profile', compact('user','logged_user_profile','same_race_users','isRatedBefore'));
     }
 
     /**

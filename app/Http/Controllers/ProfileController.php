@@ -49,8 +49,8 @@ class ProfileController extends Controller
         $user = User::with('ratings')->find($id);
         $same_race_users = User::where('race_type_id',$user->race->id)->take(3)->get();
          
-        $isRatedBefore = isRatedBefore();
-        
+        $isRatedBefore = isRatedBefore($id);
+          
         $logged_user_profile = true;
         return view('users.profile', compact('user','logged_user_profile','same_race_users','isRatedBefore'));
 

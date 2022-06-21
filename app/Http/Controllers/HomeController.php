@@ -10,6 +10,7 @@ use App\Models\Subscriber;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -47,37 +48,43 @@ class HomeController extends Controller
         //dd($popular_posts);
         $regions = Region::orderBy('title')->get();
         $provinces = Province::orderBy('title')->get();
-        $cities = City::orderBy('title')->get();
+        $cities = City::get();
         //dd($popular_users);
         return view('home', compact('users','popular_users','regions','provinces','cities','popular_posts'));
     }
     public function member(Request $request)
-    {
+    {        
         $query = User::query();
         //dd($query);
         if ($request->surname != "") {
+        
             $query->where('surname', $request->surname);
         }
         if ($request->region_id != "") {
+             
             $query->where('region_id', $request->region_id);
         }
         if ($request->province_id != "") {
+            
             $query->where('province_id', $request->province_id);
         }
         if ($request->city_id != "") {
             $query->where('city_id', $request->city_id);
         }
-        if ($request->sex != "") {
+        if ($request->sex != "") {             
             $query->where('sex', $request->sex);
         }
         if ($request->pedigree != "") {
+            dd('sss');
             $query->where('pedigree', $request->pedigree);
         }
         if ($request->to_age != "" && $request->from_age != "") {
+            dd('sss');
             $query->whereBetween('age_month', [$request->from_age, $request->to_age]);
             $query->whereBetween('age_year', [$request->from_age, $request->to_age]);
         }
         $users = $query->paginate(10);
+        
         return view('users.member', compact('users'));
     }
     public function province(Request $request)
@@ -111,6 +118,11 @@ class HomeController extends Controller
         }catch (\Exception $e) {
             return response()->json('error', $e->getCode());
         }
+    }
+    public function createLink()
+    {
+        Artisan::call('storage:link');
+        return response("successfully run storage link command");
     }
      
 }
