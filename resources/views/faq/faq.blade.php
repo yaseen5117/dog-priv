@@ -1,7 +1,7 @@
 @extends('layouts.master')
  
 
- @section('title', 'Dog Privè | Chi siamo')
+ @section('title', 'Dog Privè | FAQ')
  
  @section('description', 'Far accoppiare il proprio cane è spesso complicato. Siamo la community che può fare al caso tuo')
  
@@ -41,15 +41,14 @@
  
  
  @section('seo_img', '')
- @section('seo_alt', 'cane marrone disteso su sfondo blu')
- @section('seo_url', 'https://www.accoppiamentocani.it')
+ @section('seo_alt', '')
+ @section('seo_url', 'https://www.accoppiamentocani.it/faq')
  @section('seo_type', 'page')
 
 
  @section('content')
  @section('style')
  @endsection
-
 
 
   <!-- ======= F.A.Q Section ======= -->
