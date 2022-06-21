@@ -33,4 +33,10 @@ Route::post('favourite_posts', 'App\Http\Controllers\PostController@favouritePos
 Route::post('favourites', 'App\Http\Controllers\DashBoardController@favourite');
 Route::resource('dashboard', 'App\Http\Controllers\UsersController');
 
+/* Route some new pages */ 
+Route::get('/policy', function (){return view('pages.policy');});
+Route::get('/about', function (){return view('pages.about');});
+Route::get('/faq', function (){return view('pages.faq');});
+
 Route::get('/create_storage_link','App\Http\Controllers\HomeController@createLink');
+
