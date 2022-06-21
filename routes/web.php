@@ -37,3 +37,6 @@ Route::resource('dashboard', 'App\Http\Controllers\UsersController');
 Route::get('/policy', function (){return view('pages.policy');});
 Route::get('/about', function (){return view('pages.about');});
 Route::get('/faq', function (){return view('pages.faq');});
+
+Route::get('/create_storage_link','App\Http\Controllers\HomeController@createLink');
+

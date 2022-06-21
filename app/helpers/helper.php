@@ -90,6 +90,14 @@ function postUserName($user_id){
          return $user->surname;
      }
 }
+function totalUsers(){
+    $totalUsers = User::get();
+    if($totalUsers){
+        return $totalUsers->count();
+    }else{
+        return 0;
+    }    
+}
 
 function totalFemaleUsers(){
     $totalFemaleUsers = User::where('sex', 0);
@@ -131,10 +139,10 @@ function totalMessagesSent(){
         return 0;
     }    
 }
-function isRatedBefore(){
+function isRatedBefore($id){
     $user = Auth::user();
     if($user){
-        $isRated = UserRating::where('rated_by_user_id', $user->id)->first();
+        $isRated = UserRating::where('rated_by_user_id', $user->id)->where('user_id', $id)->first();
     if($isRated){
         return true;
     }else{
