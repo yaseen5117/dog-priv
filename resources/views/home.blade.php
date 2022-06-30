@@ -10,7 +10,7 @@
     <form action="{{ url('members') }}" type="get" role="search">
       <div class="row g-3 align-items-center">
         <div class="offset-lg-8 offset-md-8 offset-sm-0 col-lg-4 col-md-4 col-sm-12">
-          <input class="autocomplete form-control" type="text" placeholder="type the race you search" id="surname" name="surname">
+          <input class="form-control basicAutoComplete" autocomplete="off" type="text" placeholder="type the race you search" id="surname" name="surname">
         </div>
         <div class="offset-lg-8 offset-md-8 offset-sm-0 col-lg-4 col-md-4 col-sm-12">
           <select id="region_id" name="region_id" style="width: 100%;" class="form-control" value="">
@@ -129,11 +129,11 @@
           <div class="card">
             @if($user->profile_image)
             <a href="{{ url('user_profile/'.$user->id) }}">
-            <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$user->id.'/'.$user->profile_image}}" />
+              <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$user->id.'/'.$user->profile_image}}" />
             </a>
             @else
             <a href="{{ url('user_profile/'.$user->id) }}">
-            <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
+              <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
             </a>
             @endif
 
@@ -176,9 +176,9 @@
           </div>
         </div>
         @endforeach
-        
+
         <div class="col-md-12 col-lg-12 mb-md-0 mt-3">
-        {{ $users->links() }}
+          {{ $users->links() }}
           <!-- <p class="small"><a href="{{ url('members') }}" class="btn mrgn-top clr">Show More Profiles</a></p> -->
         </div>
       </div>
@@ -211,11 +211,11 @@
 
               @if($popular_user->profile_image)
               <a href="{{ url('user_profile/'.$popular_user->item_id) }}">
-              <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$popular_user->item_id.'/'.$popular_user->profile_image}}" />
+                <img height="220px" class="card-img-top" alt="image" src="{{asset('').'storage/users/'.$popular_user->item_id.'/'.$popular_user->profile_image}}" />
               </a>
               @else
               <a href="{{ url('user_profile/'.$popular_user->item_id) }}">
-              <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
+                <img height="220px" class="card-img-top" src="{{ asset('dog-prive/assets/img/1.jpg')}}" alt="">
               </a>
               @endif
               <div class="card-body">
@@ -282,11 +282,11 @@
         <div class="col-lg-4 col-md-6">
           <div class="icon-box" data-aos="fade-up">
 
-            <div class="card mb-3" style="max-width: 540px;">             
+            <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4 col-sm-4">
                   <a href="{{ url('user_profile/'.$popular_post->user_id) }}">
-                  <img style="width: 100%; height: 100%;" src="{{asset('').'storage/public/'.$popular_post->post_id.'/'.$popular_post->file_name}}" class="card-img-top" alt="{{$popular_post->title}}" />
+                    <img style="width: 100%; height: 100%;" src="{{asset('').'storage/public/'.$popular_post->post_id.'/'.$popular_post->file_name}}" class="card-img-top" alt="{{$popular_post->title}}" />
                   </a>
                 </div>
                 <div class="col-md-8 col-sm-8">
@@ -323,6 +323,34 @@
 @endsection
 @section('javascript')
 <script>
+  $(function() {
+    //remove suggestion dropdown after select one
+    $('body').on('click', function(e) {
+      $(".bootstrap-autocomplete").attr("style", "display: none !important");
+    });
+    //get race suggestion stored in DB 
+    $('.basicAutoComplete').autoComplete({
+      minLength:2,
+      resolver: 'custom',
+      events: {
+        search: function(qry, callback) {
+          $(".bootstrap-autocomplete").attr("style", "display: block !important");
+          // let's do a custom ajax call
+          $.ajax(
+            "{{url('get_race_names')}}", {
+              data: {
+                'qry': qry
+              }
+            }
+          ).done(function(res) {
+            console.log(res);
+            callback(res)
+          });
+        }
+      }
+    });
+
+  });
   // $(function() {
   //   $('.pagination a').on('click', function(e) {
   //     e.preventDefault();

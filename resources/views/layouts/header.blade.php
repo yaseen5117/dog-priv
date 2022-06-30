@@ -13,7 +13,7 @@
           <li><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
          
           <li><a class="nav-link {{ request()->is('members') ? 'active' : '' }}" href="{{ url('members') }}">Members</a></li>          
-          <li><a class="nav-link {{ request()->is('#') ? 'active' : '' }}" href="#">FAQ</a></li>
+          <li><a class="nav-link {{ request()->is('faqs') ? 'active' : '' }}" href="{{ url('faqs') }}">FAQ</a></li>
           <li><a href="nav-link {{ request()->is('#') ? 'active' : '' }}">Blog</a></li>
           <li><a href="nav-link {{ request()->is('#') ? 'active' : '' }}">Contact Us</a></li>
           @if(Auth::user())

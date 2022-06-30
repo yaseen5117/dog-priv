@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\DogType;
 use App\Models\Favourite;
 use App\Models\Province;
 use App\Models\Region;
@@ -124,5 +125,9 @@ class HomeController extends Controller
         Artisan::call('storage:link');
         return response("successfully run storage link command");
     }
-     
+    public function getRaceName(Request $request)
+    {        
+        $races = DogType::where('title', 'like', '%' . $request->qry . '%')->pluck('title');
+        return response()->json($races);
+    }     
 }

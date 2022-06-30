@@ -48,7 +48,7 @@
           </div>
           <div class="col-md-3">
             <input type="text" class="form-control mt-4" style="border-radius: 1.5rem;" value="Race: {{@$user->race->title}}" disabled>
-            <input type="text" class="form-control mt-2" style="border-radius: 1.5rem;" value="Age: {{@$user->age_month}} Month {{@$user->age_year}} Years" disabled>
+            <input type="text" class="form-control mt-2" style="border-radius: 1.5rem;" value="Age: @if(@$user->age_month){{@$user->age_month}} Month, @endif @if(@$user->age_year){{@$user->age_year}} Years @endif" disabled>
             <input type="text" class="form-control mt-2" style="border-radius: 1.5rem;" value="City: {{@$user->city->title}}" disabled>
           </div>
           <div class="col-md-4">
@@ -89,7 +89,7 @@
                   <span>{{$same_race_user->surname}}</span>
                 </div>
                 <div class="col-md-12 col-lg-12 col-sm-12">
-                  <span>Age: {{$same_race_user->age_month}} Month, {{$same_race_user->age_year}} Years </span>
+                  <span>Age: @if($same_race_user->age_month){{$same_race_user->age_month}} Month,@endif @if($same_race_user->age_year){{$same_race_user->age_year}} Years @endif</span>
                 </div>
               </div>
             </div>

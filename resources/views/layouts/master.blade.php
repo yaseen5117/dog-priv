@@ -129,7 +129,7 @@
   <script src="{{ asset('dog-prive/assets/vendor/php-email-form/validate.js') }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
   <!-- Template Main JS File -->
   <script src="{{ asset('dog-prive/assets/js/main.js') }}"></script>
 
