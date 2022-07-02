@@ -141,7 +141,8 @@
               <div class="d-flex justify-content-between">
                 <p class="small"><a href="#!" class="btn btn-light rounded-pill btn-sm">{{@$user->race->title}}</a></p>
 
-                <p class="small"><a id="sp" href="javascript:void(0);"><i class="fa fa-heart" @if(isFavourite($user->id)) style="color: red" @endif id="heart{{$user->id}}" onclick="changeColor({{$user->id}})"></i></a> ({{$user->like_count}})</p>
+                <p class="small" @if(!Auth::user()) style="pointer-events: none;
+    opacity: 0.7;" @endif><a id="sp" href="javascript:void(0);"><i class="fa fa-heart" @if(isFavourite($user->id)) style="color: red" @endif id="heart{{$user->id}}" onclick="changeColor({{$user->id}})"></i></a> ({{$user->like_count}})</p>
 
               </div>
 
@@ -162,7 +163,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="rate py-3">
                     <div class="rating" @if(!Auth::user()) style="pointer-events: none;
-    opacity: 0.2;" @endif>
+    opacity: 0.7;" @endif>
                       <input type="radio" name="rating" value="" id="rating">
                       <label for="5">☆</label>
                     </div>
@@ -230,7 +231,8 @@
                     </a></p>
                   @endif
                   <div class="d-flex justify-content-between">
-                    <p class="small"><a id="sp" href="javascript:void(0);"><i class="fa fa-heart" @if(isFavourite($popular_user->id)) style="color: red" @endif id="heart{{$popular_user->id}}" onclick="changeColor({{$popular_user->id}})"></i></a> ({{$popular_user->likeCount}})</p>
+                    <p class="small" @if(!Auth::user()) style="pointer-events: none;
+    opacity: 0.7;" @endif><a id="sp" href="javascript:void(0);"><i class="fa fa-heart" @if(isFavourite($popular_user->id)) style="color: red" @endif id="heart{{$popular_user->id}}" onclick="changeColor({{$popular_user->id}})"></i></a> ({{$popular_user->likeCount}})</p>
 
                   </div>
                 </div>
