@@ -1,7 +1,6 @@
 @extends('layouts.master')
-@section('title','FAQs')
+@section('title','Blog')
 @section('content')
-@include('users._partials.css')
 <main id="main">
 
 <!-- ======= Breadcrumbs ======= -->
@@ -9,7 +8,7 @@
   <div class="breadcrumb-hero">
     <div class="container">
       <div class="breadcrumb-hero">
-        <h2>FAQ</h2>
+        <h2>BLOG</h2>
         <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit
           quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
       </div>

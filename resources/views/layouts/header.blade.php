@@ -14,8 +14,8 @@
          
           <li><a class="nav-link {{ request()->is('members') ? 'active' : '' }}" href="{{ url('members') }}">Members</a></li>          
           <li><a class="nav-link {{ request()->is('faqs') ? 'active' : '' }}" href="{{ url('faqs') }}">FAQ</a></li>
-          <li><a href="nav-link {{ request()->is('#') ? 'active' : '' }}">Blog</a></li>
-          <li><a href="nav-link {{ request()->is('#') ? 'active' : '' }}">Contact Us</a></li>
+          <li><a class="nav-link {{ request()->is('blog') ? 'active' : '' }}" href="{{ url('blog') }}">Blog</a></li>
+          <li><a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="{{ url('about') }}">Contact Us</a></li>
           @if(Auth::user())
           <li class="dropdown"> 
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -149,28 +149,28 @@
 
     #progressbar #account:before {
         font-family: FontAwesome;
-        content: "\f144"
+        content: "\f105"
     }
 
     #progressbar #personal:before {
         font-family: FontAwesome;
-        content: "\f0f7"
+        content: "\f105"
     }
 
 
     #progressbar #payment:before {
         font-family: FontAwesome;
-        content: "\f09d"
+        content: "\f105"
     }
 
     #progressbar #paymen:before {
         font-family: FontAwesome;
-        content: "\f09d"
+        content: "\f105"
     }
 
     #progressbar #deposit:before {
         font-family: FontAwesome;
-        content: "\f015 "
+        content: "\f105 "
     }
 
     #progressbar #confirm:before {
@@ -282,19 +282,19 @@
 
         #progressbar li {
             list-style-type: none;
-            font-size: 11px;
-            width: 14%;
+            font-size: 8px;
+            width: 20%;
             float: left;
             position: relative;
             right: 5px !important;
         }
 
         #progressbar li:before {
-            width: 45px;
-            height: 46px;
-            line-height: 45px;
+            width: 33px;
+            height: 34px;
+            line-height: 30px;
             display: block;
-            font-size: 18px;
+            font-size: 15px;
             color: #ffffff;
             background: lightgray;
             border-radius: 50%;
