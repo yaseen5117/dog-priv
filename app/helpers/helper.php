@@ -8,6 +8,7 @@ use App\Models\FavouritePost;
 use SebastianBergmann\Environment\Console;
 use App\Models\Role;
 use App\Models\ModelHasRole;
+use App\Models\ReportedUser;
 use App\Models\User;
 use App\Models\UserRating;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ function uploadFile($request)
         'attachmentable_id' => $request->attachmentable_id,
         'attachmentable_type' => $request->attachmentable_type,
     ]);
-     
+
     return response("Success", 200);
     //$request->file($file_original_name)->storeAs($root .'/' . $attachmentable_id . '/', $fileName);
 
@@ -41,7 +42,7 @@ function upload($request)
             $orignalFile = $request->file($request->file_input_id);
             $fileName = md5(microtime()) . '.' . $orignalFile->getClientOriginalExtension();
             $orignalFile->storeAs($request->root_directory . '/' . $request->id . '/', $fileName);
-             
+
             return $fileName;
         }
     } catch (\Exception $e) {
@@ -51,106 +52,127 @@ function upload($request)
 
 function getRole($id)
 {
-    $roleName=ModelHasRole::join('roles','model_has_roles.role_id','=','roles.id')->select('roles.name as role_name')->where('model_has_roles.model_id','=',$id)->orderby('roles.name')->first();
-    
-    $role = "";   
-    
-    if(isset($roleName->role_name))
-    {
+    $roleName = ModelHasRole::join('roles', 'model_has_roles.role_id', '=', 'roles.id')->select('roles.name as role_name')->where('model_has_roles.model_id', '=', $id)->orderby('roles.name')->first();
+
+    $role = "";
+
+    if (isset($roleName->role_name)) {
         $role = $roleName->role_name;
     }
 
     return $role;
 }
 
-function isFavourite($user_id){ 
-    if(Auth::user()){
+function isFavourite($user_id)
+{
+    if (Auth::user()) {
         $isFav = Favourite::where('item_id', $user_id)->where('user_id', request()->user()->id)->first();
-    if($isFav){
-        return true;
-    }else{
-        return false;
+        if ($isFav) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    } 
 }
-function isFavouritePost($post_id){ 
-    if(Auth::user()){
+function isFavouritePost($post_id)
+{
+    if (Auth::user()) {
         $isFavPost = FavouritePost::where('post_id', $post_id)->where('user_id', request()->user()->id)->first();
-    if($isFavPost){
-        return true;
-    }else{
-        return false;
+        if ($isFavPost) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    } 
 }
 
-function postUserName($user_id){ 
-     if($user_id){
-         $user = User::find($user_id);
-         return $user->surname;
-     }
+function postUserName($user_id)
+{
+    if ($user_id) {
+        $user = User::find($user_id);
+        return $user->surname;
+    }
 }
-function totalUsers(){
+function totalUsers()
+{
     $totalUsers = User::get();
-    if($totalUsers){
+    if ($totalUsers) {
         return $totalUsers->count();
-    }else{
+    } else {
         return 0;
-    }    
+    }
 }
 
-function totalFemaleUsers(){
+function totalFemaleUsers()
+{
     $totalFemaleUsers = User::where('sex', 0);
-    if($totalFemaleUsers){
+    if ($totalFemaleUsers) {
         return $totalFemaleUsers->count();
-    }else{
+    } else {
         return 0;
-    }    
+    }
 }
-function totalMaleUsers(){
+function totalMaleUsers()
+{
     $totalMaleUsers = User::where('sex', 1);
-    if($totalMaleUsers){
+    if ($totalMaleUsers) {
         return $totalMaleUsers->count();
-    }else{
+    } else {
         return 0;
-    }    
+    }
 }
-function totalRaces(){
+function totalRaces()
+{
     $totalRaces = User::distinct()->get('race_type_id');
-    if($totalRaces){
+    if ($totalRaces) {
         return $totalRaces->count();
-    }else{
+    } else {
         return 0;
-    }    
+    }
 }
-function totalCities(){
+function totalCities()
+{
     $totalCities = User::distinct()->get('city_id');
-    if($totalCities){
+    if ($totalCities) {
         return $totalCities->count();
-    }else{
+    } else {
         return 0;
-    }    
+    }
 }
-function totalMessagesSent(){
-    $totalMessagesSent = null;//User::distinct()->get('city_id');
-    if($totalMessagesSent){
+function totalMessagesSent()
+{
+    $totalMessagesSent = null; //User::distinct()->get('city_id');
+    if ($totalMessagesSent) {
         return $totalMessagesSent->count();
-    }else{
+    } else {
         return 0;
-    }    
+    }
 }
-function isRatedBefore($id){
+function isRatedBefore($id)
+{
     $user = Auth::user();
-    if($user){
+    if ($user) {
         $isRated = UserRating::where('rated_by_user_id', $user->id)->where('user_id', $id)->first();
-    if($isRated){
-        return true;
-    }else{
+        if ($isRated) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
         return false;
     }
-    }else{
-        return false;
-    }
-    
 }
-
+function isReportedBefore($id)
+{
+    $user = Auth::user();
+    if ($user) {
+        $isReported = ReportedUser::where('reported_by_user_id', $user->id)->where('reported_user_id', $id)->first();
+        if ($isReported) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}

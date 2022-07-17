@@ -7,33 +7,34 @@ use App\Models\UserRating;
 use App\Models\Role;
 use App\Models\ModelHasRole;
 use App\Models\Province;
+use App\Models\ReportedUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
- 
+
     public function __construct()
     {
         $this->middleware('auth');
-        
     }
 
     public function index(Request $request)
-    {                 
+    {
         $user = Auth::user();
         // dd($user->race->id);
-        $same_race_users = User::where('race_type_id',$user->race->id)->take(3)->get();
+        $same_race_users = User::where('race_type_id', $user->race->id)->take(3)->get();
         $isRatedBefore = true; //user cannot rate himself
+        $isReportedBefore = true; //user cannot report himself
         $logged_user_profile = false;
-        return view('users.profile', compact('user','logged_user_profile','same_race_users','isRatedBefore'));
+        return view('users.profile', compact('user', 'logged_user_profile', 'same_race_users', 'isRatedBefore', 'isReportedBefore'));
     }
 
     /**
@@ -43,18 +44,16 @@ class UsersController extends Controller
      */
     public function create()
     {
-         
     }
 
     public function store(Request $request)
     {
         try {
-
         } catch (\Exception $e) {
-            
+
             $request->session()->flash('error', $e->getMessage());
-            
-            return redirect(route($this->route_name.".index"));
+
+            return redirect(route($this->route_name . ".index"));
         }
     }
 
@@ -66,7 +65,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-          
     }
 
     /**
@@ -78,7 +76,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
     }
 
     /**
@@ -89,50 +86,47 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-         
     }
 
     public function chagneUserProfileImage(Request $request)
     {
-        $file = $request->file('file');              
-        if ($file) {         
-            $fileName = md5(microtime()) . '.' . $file->getClientOriginalExtension();                    
+        $file = $request->file('file');
+        if ($file) {
+            $fileName = md5(microtime()) . '.' . $file->getClientOriginalExtension();
             User::where("id", $request->id)->update(["profile_image" => $fileName]);
             $file->storeAs('users/' . $request->id . '/', $fileName);
             return response([
                 'redirect_url' => '/dashboard'
             ]);
-        }        
-    }   
+        }
+    }
 
     public function rateUser(Request $request)
-    {         
+    {
         $user = Auth::user();
         UserRating::create([
-            'rated_by_user_id' => $user->id,  
+            'rated_by_user_id' => $user->id,
             'user_id' => $request->user_id,
-            'star_rating' => $request->stars           
-        ]);    
-         
+            'star_rating' => $request->stars
+        ]);
+
         return response([
             'message' => 'Thanks for Rating!'
-        ], 200);                  
-               
-    }   
-    public function reportingUser(Request $request)
-    {      
-        return $request->all();   
-        $user = Auth::user();
-        UserRating::create([
-            'rated_by_user_id' => $user->id,  
-            'user_id' => $request->user_id,
-            'star_rating' => $request->stars           
-        ]);    
-         
-        return response([
-            'message' => 'Thanks for Rating!'
-        ], 200);                  
-               
+        ], 200);
     }
-        
+    public function reportingUser(Request $request)
+    {
+        $user = Auth::user();
+        ReportedUser::create([
+            'reported_by_user_id' => $user->id,
+            'reported_user_id' => $request->user_id,
+            'reason' => $request->reason,
+            'comment' => $request->comment
+        ]);
+
+        return response([
+            'redirect_url' => "/user_profile/$request->user_id",
+            'message' => 'Thanks!'
+        ], 200);
+    }
 }
